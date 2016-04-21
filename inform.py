@@ -199,18 +199,19 @@ class SignalHandler():
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("-c", "--conf", help="Configuration file; (default: ./conf.toml)", default="conf.toml")
-    parser.add_argument("-p", "--port", help="Local port to listen to; (default: 8080)", default=8080, type=int)
+    parser.add_argument("-c", "--conf",
+                        help="Configuration file; (default: ./conf.toml)",
+                        default="conf.toml")
+    parser.add_argument("-p", "--port",
+                        help="Local port to listen to; (default: 8080)",
+                        default=8080,
+                        type=int)
     args = parser.parse_args()
 
     conf_file = args.conf
     port = args.port
 
-    try:
-        conf = toml.load(conf_file)
-    except Exception as _string:
-        print(_string)
-        exit(-1)
+    conf = toml.load(conf_file)
 
     token = conf['global']['token']
     chat_ids = conf['global']['chat_ids']
